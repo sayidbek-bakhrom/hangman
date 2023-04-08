@@ -1,31 +1,20 @@
-"""
-Hangman implementation by Kylie Ying
-
-YouTube Kylie Ying: https://www.youtube.com/ycubed 
-Twitch KylieYing: https://www.twitch.tv/kylieying 
-Twitter @kylieyying: https://twitter.com/kylieyying 
-Instagram @kylieyying: https://www.instagram.com/kylieyying/ 
-Website: https://www.kylieying.com
-Github: https://www.github.com/kying18 
-Programmer Beast Mode Spotify playlist: https://open.spotify.com/playlist/4Akns5EUb3gzmlXIdsJkPs?si=qGc4ubKRRYmPHAJAIrCxVQ 
-"""
-
 import random
-from words import words
+from words import words_list
 from hangman_visual import lives_visual_dict
 import string
 
 
-def get_valid_word(words):
-    word = random.choice(words)  # randomly chooses something from the list
+def get_valid_word(arr):
+    word = random.choice(arr)  # randomly chooses something from the list
     while '-' in word or ' ' in word:
-        word = random.choice(words)
+        word = random.choice(arr)
 
     return word.upper()
 
 
 def hangman():
-    word = get_valid_word(words)
+    word = get_valid_word(words_list)
+    print(word)
     word_letters = set(word)  # letters in the word
     alphabet = set(string.ascii_uppercase)
     used_letters = set()  # what the user has guessed
@@ -65,7 +54,7 @@ def hangman():
         print(lives_visual_dict[lives])
         print('You died, sorry. The word was', word)
     else:
-        print('YAY! You guessed the word', word, '!!')
+        print('Wow! You guessed the word', word, '!!')
 
 
 if __name__ == '__main__':
